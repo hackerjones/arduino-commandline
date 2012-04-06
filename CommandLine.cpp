@@ -29,9 +29,10 @@ CommandLine::CommandLine()
  * Resets the command line processor with a new stream and callback
  * function.
  */
-void CommandLine::begin(Stream* stream, CommandLineCallback func)
+void CommandLine::begin(Stream* stream, bool echo, CommandLineCallback func)
 {
     _stream = stream;
+    _echo = echo;
     _func = func;
     _count = 0;
 }
@@ -50,6 +51,11 @@ void CommandLine::read()
     while(_stream->available() > 0) 
     {
         char c = _stream->read();
+        
+        if (_echo)
+        {
+            _stream->write(c);
+        }
 
         /* overflow check */
         if (_count >= ARRAY_SIZE(_buffer) - 1)
@@ -64,6 +70,10 @@ void CommandLine::read()
             {
                 _count--;
                 _buffer[_count] = 0;
+                if (_echo)
+                {
+                    _stream->print(" \b");
+                }
             }
             /* line terminator */
             else if (c == '\r' || c == '\n')

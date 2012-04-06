@@ -40,12 +40,13 @@ private:
     byte                _argc;
     char*               _tokens;
     CommandLineCallback _func;
+    bool                _echo;
 
     void read();
     void split();
 public:
     CommandLine();
-    void begin(Stream* stream, CommandLineCallback func);
+    void begin(Stream* stream, bool echo, CommandLineCallback func);
     void loop();
 };
 
