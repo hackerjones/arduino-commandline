@@ -1,0 +1,18 @@
+Command line processor for Arduino Streams
+===========================================
+
+The command line processor library consists of the CommandLine class.
+When attached to a Stream object it will work similar to a unix or dos 
+command shell. The user must supply a call back function which is called
+by the processor when a complete command line is assembled. The list of 
+arguments is passed via the (argc,argv) calling method similar to that
+of a desktop C application's main function.
+
+Library Files
+=============
+CommandLine.h
+CommandLine.cpp
+
+Required packages
+==================
+Arduino 1.0 or greater

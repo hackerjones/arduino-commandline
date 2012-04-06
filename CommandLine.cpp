@@ -54,7 +54,7 @@ void CommandLine::read()
         /* overflow check */
         if (_count >= ARRAY_SIZE(_buffer) - 1)
         {
-            _stream->println(F("command to long"));
+            _stream->println(F("command too long"));
             _count = 0;
         }
         else
