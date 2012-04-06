@@ -17,8 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef _CONSOLE_H_
-#define _CONSOLE_H_
+#ifndef _COMMANDLINE_H_
+#define _COMMANDLINE_H_
 
 #include <Arduino.h>
 
