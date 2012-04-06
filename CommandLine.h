@@ -24,6 +24,9 @@
 
 typedef void (*CommandLineCallback)(Stream*, byte, char**);
 
+/**
+ * Command line processing class for Arduino Streams
+ */
 class CommandLine 
 {
 private:

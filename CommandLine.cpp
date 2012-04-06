@@ -25,6 +25,10 @@ CommandLine::CommandLine()
 {
 }
 
+/**
+ * Resets the command line processor with a new stream and callback
+ * function.
+ */
 void CommandLine::begin(Stream* stream, CommandLineCallback func)
 {
     _stream = stream;
@@ -32,6 +36,10 @@ void CommandLine::begin(Stream* stream, CommandLineCallback func)
     _count = 0;
 }
 
+/** 
+ * Executes command processing code 
+ * Call from your sketch's loop() function
+ */
 void CommandLine::loop()
 {
     read();
@@ -46,7 +54,7 @@ void CommandLine::read()
         /* overflow check */
         if (_count >= ARRAY_SIZE(_buffer) - 1)
         {
-            _stream->println(F("console overflow"));
+            _stream->println(F("command to long"));
             _count = 0;
         }
         else
@@ -103,9 +111,3 @@ void CommandLine::split()
         _func(_stream, _argc, _argv);
     }
 }
-
-
-
-
-
-
