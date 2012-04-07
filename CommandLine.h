@@ -39,6 +39,7 @@ private:
     char*               _tokens;
     CommandLineCallback _func;
     bool                _echo;
+    String              _prompt;
 
     void read()
     {
@@ -74,6 +75,7 @@ private:
                 {
                     _buffer[_count] = 0;
                     split();
+                    displayPrompt();
                     _count = 0;
                 }
                 /* normal character */
@@ -105,15 +107,14 @@ private:
             }
             while (_tokens);
         }
-        else
-        {
-            /* blank line */
-        }
 
-        if (_argc > 0)
-        {
-            _func(_stream, _argc, _argv);
-        }
+        _func(_stream, _argc, _argv);
+    }
+
+    void displayPrompt()
+    {
+        if (_prompt.length() > 0)
+            _stream->print(_prompt);
     }
 
 public:
@@ -121,12 +122,16 @@ public:
     {
     }
 
-    void begin(Stream* stream, bool echo, CommandLineCallback func)
+    void begin(Stream* stream, CommandLineCallback func,
+               bool echo = true, String prompt = String())
     {
         _stream = stream;
         _echo = echo;
         _func = func;
         _count = 0;
+        _prompt = prompt;
+
+        displayPrompt();
     }
 
     void loop()
