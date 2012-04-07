@@ -24,8 +24,6 @@
 
 typedef void (*CommandLineCallback)(Stream*, byte, char**);
 
-#define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))
-
 /**
  * Command line processing class for Arduino Streams
  */
@@ -54,7 +52,7 @@ private:
             }
 
             /* overflow check */
-            if (_count >= ARRAY_SIZE(_buffer) - 1)
+            if (_count >= BufferSize - 1)
             {
                 _stream->println(F("command too long"));
                 _count = 0;
@@ -97,7 +95,7 @@ private:
         {
             do
             {
-                if (_argc >= ARRAY_SIZE(_argv))
+                if (_argc >= MaxArguments)
                 {
                     _stream->println(F("too many arguments"));
                     return;
