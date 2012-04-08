@@ -122,6 +122,10 @@ public:
     {
     }
 
+    /**
+     * Resets the command line processor with a new stream and callback
+     * and options.
+     */
     void begin(Stream* stream, CommandLineCallback func,
                bool echo = true, String prompt = String())
     {
@@ -134,6 +138,10 @@ public:
         displayPrompt();
     }
 
+    /**
+    * Executes command processing code
+    * Call from your sketch's loop() function
+    */
     void loop()
     {
         read();
