@@ -22,7 +22,7 @@
 
 #include <Arduino.h>
 
-typedef void (*CommandLineCallback)(Stream*, byte, char**);
+typedef void (*CommandLineCallback)(Stream&, byte, char**);
 
 /**
  * Command line processing class for Arduino Streams
@@ -108,7 +108,7 @@ private:
             while (_tokens);
         }
 
-        _func(_stream, _argc, _argv);
+        _func(*_stream, _argc, _argv);
     }
 
     void displayPrompt()
