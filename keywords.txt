@@ -1,0 +1,4 @@
+CommandLine	KEYWORD1
+CommandLineCallback	KEYWORD1
+begin	KEYWORD2
+loop	KEYWORD2
